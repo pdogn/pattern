@@ -20,11 +20,24 @@ public class IdleState : IState
     public void Enter()
     {
         Debug.Log("idle enter");
+        _controller.animator.Play("Idle");
     }
 
     public void Execute()
     {
         Debug.Log("idle execute");
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            _controller.DoKneel();
+        }
+        if(_controller.xInput != 0)
+        {
+            _controller.DoRun();
+        }
+        if (!_controller.grounded)
+        {
+            _controller.DoJump();
+        }
     }
 
     public void Exit()

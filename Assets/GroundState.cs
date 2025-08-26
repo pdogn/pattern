@@ -12,11 +12,21 @@ public class GroundState : IState
     public void Enter()
     {
         Debug.Log("ground enter");
+        _controller.animator.Play("Kneel");
     }
 
     public void Execute()
     {
         Debug.Log("ground execute");
+        
+        if (_controller.xInput != 0)
+        {
+            _controller.DoRun();
+        }
+        if (!_controller.grounded)
+        {
+            _controller.DoJump();
+        }
     }
 
     public void Exit()

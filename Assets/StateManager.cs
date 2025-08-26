@@ -6,6 +6,13 @@ public class StateManager : MonoBehaviour
 {
     [SerializeField] IState _currentState;
 
+    private void Update()
+    {
+        if(_currentState != null)
+        {
+            _currentState.Execute();
+        }
+    }
     public void ChangeState(IState state)
     {
         if(_currentState != null && _currentState.GetType() == state.GetType())

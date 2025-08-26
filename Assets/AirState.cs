@@ -12,11 +12,16 @@ public class AirState : IState
     public void Enter()
     {
         Debug.Log("air enter");
+        _controller.animator.Play("Air");
     }
 
     public void Execute()
     {
         Debug.Log("air execute");
+        if (_controller.grounded)
+        {
+            _controller.DoIdle();
+        }
     }
 
     public void Exit()
